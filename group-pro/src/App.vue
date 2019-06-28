@@ -17,6 +17,8 @@
 	.footer{
 		position: fixed;
 		bottom: 0;
-		left: 0
+		left: 0;
+		background:#fff;
+		z-index: 11;
 	}
 </style>
