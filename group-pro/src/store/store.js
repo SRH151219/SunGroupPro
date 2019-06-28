@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
 	  		foodInfo:[],
-			info:[]		
+			info:[],
+			sumPrice:""	
   },
   mutations: {
 			addInfo(state,params){//params=>id
@@ -32,8 +33,19 @@ export default new Vuex.Store({
 						item.num--
 					}
 				})
+			},
+			moveInfo(state,params){
+				state.info.filter((item,index)=>{
+					if(item.id==params){
+						state.info.splice(index,1)
+					}
+					return item
+				})
+			},
+			changeSumPrice(state,params){
+				console.log(params)
+				state.sumPrice=params
 			}
-			
   },
   actions: {
 
