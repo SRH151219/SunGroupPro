@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from "components/home"
 import ShopCar from "components/shopCar"
 import My from "components/my"
+import Pay from "components/pay"
 Vue.use(Router)
 
 export default new Router({
@@ -15,12 +16,22 @@ export default new Router({
 			component:Home
 		},
 		{
+			path:"/home",
+			component:Home
+		},
+		{
 			path:"/shopCar",
 			component:ShopCar
+				
 		},
 		{
 			path:"/my",
 			component:My
+		},
+		{
+			path:"/pay",
+			name:"pay",
+			component:Pay
 		}
 	]
 })
