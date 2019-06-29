@@ -31,8 +31,10 @@ export default new Vuex.Store({
 				state.info.map((item,index)=>{
 					if(item.id==params){
 						item.num--
+						
 					}
 				})
+				console.log(state.info)
 			},
 			moveInfo(state,params){
 				state.info.filter((item,index)=>{
@@ -41,9 +43,9 @@ export default new Vuex.Store({
 					}
 					return item
 				})
+				console.log(state.info)
 			},
 			changeSumPrice(state,params){
-				console.log(params)
 				state.sumPrice=params
 			}
   },

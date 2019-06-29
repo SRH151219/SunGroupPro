@@ -9,9 +9,10 @@
 			</div>
 		</div>
 		<div class="content" v-else>
-			<div>
+			<div class="scroll-box">
+				<div>
 				<ul class="food-box">
-					<li v-for="(item,index) in this.list">
+					<li v-for="(item,index) in this.list" :key="index">
 						<div class="left">
 							<img :src="item.img" />
 						</div>
@@ -49,10 +50,11 @@
 						<span><i>￥</i>{{sumPrice}}</span>
 					</div>
 				</div>
-				<div class="pay-box">
-					<div class="btn-box">
-						<div class="btn" @click="goPay">去结算</div>
-					</div>
+			</div>
+			</div>
+			<div class="pay-box">
+				<div class="btn-box">
+					<div class="btn" @click="goPay">去结算</div>
 				</div>
 			</div>
 		</div>
@@ -60,6 +62,7 @@
 </template>
 
 <script>
+	import BS from "better-scroll"
 	export default({
 		data(){
 			return{
@@ -101,10 +104,15 @@
 				
 			},
 			sumPrice(){
-				if(this.realSum>=49){
+				 if(this.reslSum==0){
+					console.log(111)
+					this.postage='+￥0'
+					return this.realSum
+				}else if(this.realSum>=49){
 					this.postage="免邮"
 					return this.realSum
-				}else{
+				}
+				else{
 					this.postage="+￥6"
 					return this.realSum+6
 				}
@@ -143,16 +151,24 @@
 				console.log(this.sumPrice)
 				this.$store.commit("changeSumPrice",this.sumPrice)
 				this.$router.push({name:"pay",params:{info:this.list,price:this.sumPrice}})
-			}
-		},
-		mounted(){
-			this.getinfo()
-			if(this.$store.state.info.length==0){
+			},
+			isShow(){
+				if(this.$store.state.info.length==0){
 				this.show=true
 			}else{
 				this.show=false
 			}
+			}
+		},
+		mounted(){
+			this.scroll=new BS(".scroll-box",{click:true})
+			this.getinfo()
+			this.isShow()
 			this.info=this.$store.state.info
+		},
+		beforeUpdate(to,from,next){
+		   this.isShow()
+			next
 		}
 	})
 </script>
@@ -188,6 +204,10 @@
 			}
 		}
 		.content{
+			.scroll-box{
+				position: fixed;
+				.top(45);
+				.bottom(100);
 			.food-box{
 				.w(375);
 				.margin(5,0,5,0);
@@ -245,6 +265,7 @@
 					}
 				}
 			}
+			}
 			.price-box{
 				.w(375);
 				.h(235);
@@ -265,7 +286,6 @@
 				position: absolute;
 				bottom: 0;
 				left: 0;
-				.padding(40,0,0,0);
 				.btn-box{
 					.w(375);
 					.h(40);

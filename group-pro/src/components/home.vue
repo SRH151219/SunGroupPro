@@ -69,17 +69,6 @@ export default {
 	  mainInfo: []
     };
   },
-  computed:{
-	  info(){
-		  return  this.$store.state.info
-	  }
-  },
-  watch:{
-	  info(){
-		  console.log(111)
-		  this.getNum()
-	  }
-  },
   methods: {
 	  toDetails(item){
 		 this.state=!this.state
@@ -129,9 +118,10 @@ export default {
     	  } 
     },
     del(_id,_ind) {
-      if (this.$refs.inputText[_ind].value <=0) {
-        this.$refs.inputText[_ind].value = 0;
-      } else {
+			if(this.$refs.inputText[_ind].value==1){
+				 this.$refs.inputText[_ind].value = 0;
+				this.$store.commit("moveInfo", _id);	
+			}else {
 		this.$store.commit("delInfo", _id);
 		let arr=this.$store.state.info
         for (let index = 0; index < arr.length; index++) { 
@@ -146,6 +136,11 @@ export default {
 	this.getInfo();
    let navBS= new BScroll(".top-nav", {click: true, scrollX: true });
     let homeBS= new BScroll(".homeScroll", {click: true});
+  },
+  beforeUpdate(to,from,next){
+    console.log('守卫')
+    this.getNum()
+    next
   }
 };
 </script>
