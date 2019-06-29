@@ -6,6 +6,9 @@ import store from './store/store'
 import axios from './common/utils/axios'
 Vue.prototype.$axios = axios
 
+// 引入iconfont公共样式
+import 'common/myIconfont/iconfont.css'
+
 // 全局引入mint-ui
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
