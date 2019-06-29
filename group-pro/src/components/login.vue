@@ -113,7 +113,7 @@ export default {
     getAddress () {
       this.$axios({
         method: 'post',
-        url: 'https://www.easy-mock.com/mock/5d1587c3c365eb72765bef9d/api	/users/getAddress'
+        url: 'https://www.easy-mock.com/mock/5d1587c3c365eb72765bef9d/api/users/getAddress'
       }).then((data) => {
         // 保存到vuex
         this.saveAddress(data.data)
@@ -136,13 +136,11 @@ export default {
   top: 0;
   bottom: 0;
   .w(375);
-  background: url('http://pic36.nipic.com/20131126/8821914_071759099000_2.jpg')
-    no-repeat;
+  background: url('/static/imgs/goods/login.jpg') no-repeat;
   background-size: cover;
   .back {
     .w(50);
     .h(50);
-    // color: red;
     background: rgba(95, 85, 87, 0.3);
     color: #fff;
     font-weight: 900;

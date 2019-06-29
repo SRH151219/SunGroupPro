@@ -98,91 +98,6 @@ export default {
     }
   }
 }
-// import axios from "axios";
-// import Vuex from "vuex";
-// import Cookies from "js-cookie";
-// export default {
-//   data () {
-//     return {
-//       userName: "",
-//       userPwd: "",
-//       nameWarn: "",
-//       pwdWarn: ""
-//     };
-//   },
-//   created () {
-//     this.obverser.$emit("changeState3");
-//   },
-//   destroyed () {
-//     this.obverser.$emit("changeState4");
-//   },
-//   methods: {
-//     //   返回按钮
-//     handleBack: function () {
-//       this.$router.back();
-//     },
-//     //登录按钮
-//     handleLogin: function () {
-//       // console.log(this.userName, this.userPwd);
-//       //-----------------------------------------前端校验---------------------------
-
-//       //用户名： 2-20个 中文、英文、数字但不包括下划线等符号
-//       var reg1 = /^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$/;
-//       //  密码：密码(以字母开头，长度在6~18之间，只能包含字母、数字和下划线)
-//       var reg2 = /^[a-zA-Z]\w{5,17}$/;
-
-//       if (this.userName == "") {
-//         this.nameWarn = "用户名不能为空";
-//       } else if (!reg1.test(this.userName)) {
-//         this.nameWarn = "请输入2~10个中文/英文/数字";
-//       }
-
-//       if (this.userPwd == "") {
-//         this.pwdWarn = "密码不能为空";
-//       } else if (this.userPwd.length < 6 || this.userPwd.length > 20) {
-//         this.pwdWarn = "密码长度为 6 ~ 20 个字符";
-//       } else if (!reg2.test(this.userPwd)) {
-//         this.pwdWarn = "以字母开头，只包含字母/数字/下划线";
-//       }
-
-//       if (reg1.test(this.userName) && reg2.test(this.userPwd)) {
-//         axios({
-//           method: "post",
-//           url: "/api/users/login",
-//           data: {
-//             userName: this.userName,
-//             userPwd: this.userPwd,
-//           },
-//           responseType: "json"
-//         }).then(data => {
-//           if (data.data.status == 1) {
-//             //如果登录成功，将用户名放到仓库
-//             // this.getUserInfo(this.userName);
-//             //如果登录成功，将用户名放到cookies中
-//             Cookies.set("userName", this.userName);
-//             //登陆成功后，路径跳转
-//             this.$router.push("/mall");
-//           } else if (data.data.status == 2) {
-//             this.pwdWarn = data.data.info;
-//           } else if (data.data.status == 3) {
-//             this.nameWarn = data.data.info;
-//           }
-//         });
-//       }
-//     },
-//     //点击注册按钮
-//     handleRegister () {
-//       this.$router.push("/register");
-//     },
-//     //my仓库
-//     // ...Vuex.mapActions({
-//     //   //保存用户信息
-//     //   getUserInfo:"my/getUserInfo"
-//     // })
-
-//   },
-
-// };
 </script>
 
 <style scoped lang='less'>
@@ -193,8 +108,7 @@ export default {
   top: 0;
   bottom: 0;
   .w(375);
-  background: url('http://pic31.nipic.com/20130801/11604791_100539834000_2.jpg')
-    no-repeat;
+  background: url('/static/imgs/goods/register.jpg') no-repeat;
   background-size: cover;
   .back {
     .w(50);
