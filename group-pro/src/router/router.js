@@ -20,8 +20,8 @@ let router = new Router({
 	base: process.env.BASE_URL,
 	routes: [{
 			path: "/",
-			redirect: "/home",
-			component: Home
+			redirect: "/login",
+			component: Login
 		},
 		{
 			path: "/shopCar",

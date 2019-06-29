@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="this.$store.state.showFooter">
     <ul>
       <li>
         <router-link to="/home">
@@ -10,12 +10,11 @@
       <li>
         <router-link to="/shopCar">
           <span class="iconfont">&#xe61b;</span>
-
           <span>购物车</span>
         </router-link>
       </li>
 
-      <li>
+      <li @click="goMy">
         <router-link to="/my">
           <span class="iconfont">&#xe623;</span>
           <span>我的</span>
@@ -27,6 +26,21 @@
 </template>
 
 <script>
+	export default({
+		data(){
+			return{
+				show:true
+			}
+		},
+		methods:{
+			goMy(){
+				this.$store.commit("changeShowFooter",true)
+			}
+		},
+		mounted(){
+			this.goMy()
+		}
+	})
 </script>
 
 <style lang="less" scoped="scoped">

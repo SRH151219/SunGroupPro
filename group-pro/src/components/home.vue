@@ -70,11 +70,12 @@ export default {
     };
   },
   methods: {
-	  toDetails(item){
+	  toDetails(item){//去详情页
 		 this.state=!this.state
 		  this.$router.push({name:'details',params:{Info:item}})
+			this.$store.commit("changeShowFooter",false)
 	  },
-    getInfo() {
+    getInfo() {//获取数据
       this.$axios.get("/goods.json").then(res => {
 		   this.$store.state.foodInfo=res
 		   this.getData()
@@ -142,6 +143,7 @@ export default {
     this.getNum()
     next
   }
+	
 };
 </script>
 <style lang="less" scoped="scoped">

@@ -169,7 +169,7 @@ export default {
         .h(40);
         .l_h(40);
         border: 0;
-        border-bottom: 2px solid #ccc;
+        border-bottom: 1px solid #ccc;
         background: 0;
         text-align: center;
         outline: none;

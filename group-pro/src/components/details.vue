@@ -21,7 +21,7 @@
       </div>
       </div>
     </main>
-    <!-- <footer>
+    <footer>
       <div class="btn">
         <input @click="del(data.id)" class="Btn min" type="button" value="-">
         <input ref="inputText" class="Btn" :value="num">
@@ -30,7 +30,7 @@
       <div class="toCar">
           <button @click="toCar">去购物车</button>
       </div>
-    </footer> -->
+    </footer>
   </div>
 </template>
 
@@ -47,9 +47,11 @@ export default {
   methods:{
     back(){
       this.$router.go(-1)
+			this.$store.commit("changeShowFooter",true)
     },
     toCar(){
       this.$router.push('/shopCar')
+			this.$store.commit("changeShowFooter",true)
     },
     add(id) {
       this.$store.commit("addInfo", id);
@@ -134,7 +136,7 @@ export default {
     .l_h(20);
       }
     }
-    /* footer{
+    footer{
     .w(375);
     height: 50px;
     border-top: 1px solid #eee;
@@ -164,6 +166,6 @@ padding-top:10px;
     height: 50px;
       }
     }
-    } */
+    }
 }
 </style>

@@ -11,10 +11,16 @@ export default new Vuex.Store({
 	state: {
 		foodInfo: [],
 		info: [],
-		sumPrice: ""
+		sumPrice: "",
+		showFooter:true,
+		goodsNum:0
 	},
 	mutations: {
-		addInfo(state, params) { //params=>id
+		changeShowFooter(state,params){
+			state.showFooter=params
+		},
+		
+		addInfo(state, params) { //添加商品params=>id
 			var obj = {
 				id: params,
 				num: 1
@@ -31,7 +37,7 @@ export default new Vuex.Store({
 				state.info.push(obj)
 			}
 		},
-		delInfo(state, params) {
+		delInfo(state, params) {//减少商品
 			state.info.map((item, index) => {
 				if (item.id == params) {
 					item.num--
@@ -40,7 +46,7 @@ export default new Vuex.Store({
 			})
 			console.log(state.info)
 		},
-		moveInfo(state, params) {
+		moveInfo(state, params) {//删除商品
 			state.info.filter((item, index) => {
 				if (item.id == params) {
 					state.info.splice(index, 1)
@@ -51,6 +57,9 @@ export default new Vuex.Store({
 		},
 		changeSumPrice(state, params) {
 			state.sumPrice = params
+		},
+		showGoodsNum(state,params){
+			state.goodsNum=state.info.length
 		}
 	},
 	actions: {

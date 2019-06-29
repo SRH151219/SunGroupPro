@@ -1,8 +1,8 @@
 <template>
   <div id="login">
-    <div class="back iconfont iconIcon-fanhui
+    <!-- <div class="back iconfont iconIcon-fanhui
 "
-         @click="handleBack"> </div>
+         @click="handleBack"> </div> -->
     <div class="con">
       <p>登录</p>
       <p class="tips">{{tip}}</p>
@@ -51,9 +51,10 @@ export default {
       saveAddress: 'my/saveAddress',
       getUserInfo: 'my/getUserInfo'
     }),
-    handleBack () {
-      this.$router.back()
-    },
+  /*  handleBack () {
+      this.$router.push("/home")
+			this.$store.commit("changeShowFooter",true)
+    }, */
     handleLogin () {
       //用户名： 6-20个 中文、英文、数字但不包括下划线等符号
       var reg1 = /^[\u4E00-\u9FA5A-Za-z0-9]{6,20}$/
@@ -87,6 +88,7 @@ export default {
             this.tip = '登录成功'
             setTimeout(() => {
               this.tip = ''
+							this.$store.commit("changeShowFooter",true)
               this.$router.push('/home')
               // 将数据本地化存储，3天
               myLocalStorage.set('userToken', res.usertoken, 3)
@@ -105,7 +107,7 @@ export default {
         })
 
       }
-
+			
     },
     handleRegister () {
       this.$router.push('/register')
@@ -123,7 +125,7 @@ export default {
     }
   },
   mounted () {
-    //
+    
   }
 }
 </script>
@@ -198,7 +200,7 @@ export default {
         .h(40);
         .l_h(40);
         border: 0;
-        border-bottom: 2px solid #ccc;
+        border-bottom: 1px solid #ccc;
         background: 0;
         text-align: center;
         outline: none;

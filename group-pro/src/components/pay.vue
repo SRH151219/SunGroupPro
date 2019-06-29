@@ -1,7 +1,7 @@
 <template>
 	<div class="pay-wrap">
 		<div class="head">
-			<i @click="back">&lt;</i>
+			<i @click="back">back</i>
 			填写订单
 		</div>
 		<div class="scroll-box">
@@ -20,9 +20,12 @@
 				</div>
 				<div class="address-box">
 					<div class="address">
-						地址:<input type="text"
-						       readonly="readonly" />
+						地址:<input type="text" readonly="readonly" @click="showAddress" v-model="addressInfo"/>
+						<ul class="address-wrap" v-if="show">
+							<li v-for="(item,index) in addressList" @click="putAddress(index)">{{item.adressdetails}}</li>
+						</ul>
 					</div>
+					<div class="white-box"></div>
 				</div>
 			</div>
 		</div>
@@ -40,35 +43,45 @@
 </template>
 
 <script>
+	import BS from "better-scroll"
 export default ({
 	data () {
 		return {
 			list: "",
-			price: ""
+			price: "",
+			addressList:"",
+			show:false,
+			addressInfo:""
 		}
 	},
 	computed: {
-
+		
 	},
-	watch: {
-
+	watch:{
+		
 	},
 	methods: {
 		back () {
 			this.$router.push("/shopCar")
 		},
+		showAddress(){
+			this.show=true
+		},
+		putAddress(index){
+			this.addressInfo=this.addressList[index].adressdetails
+			this.show=false
+		},
 		goPay () {
-			if (localStorage.userToken) {
-				alert("支付成功")
-			} else {
-				this.$router.push("/login")
-			}
+			
+			alert("支付成功")
 		}
 	},
 	mounted () {
-		console.log("组件挂载", this.$store.state.sumPrice)
+		this.addressList=this.$store.state.my.addressList
+		console.log(this.addressList)
 		this.list = this.$route.params.info
 		this.price = this.$route.params.price
+		this.scroll=new BS(".scroll-box",{click:true})	
 	}
 })
 </script>
@@ -88,12 +101,15 @@ export default ({
     .l_h(50);
     background: #fff;
     text-align: center;
-    i {
+    i{
       .w(50);
       .h(50);
       .l_h(50);
+	  font-style: italic;
       text-align: center;
-      float: left;
+     position: absolute;
+	 top: 0;
+	 left: 0;
     }
   }
   .scroll-box {
@@ -101,7 +117,9 @@ export default ({
     position: fixed;
     .top(60);
     .bottom(40);
+	overflow: hidden;
     .min {
+		
       ul {
         .w(375);
         .padding(10,10,10,10);
@@ -135,17 +153,29 @@ export default ({
       .address-box {
         .margin(10,0,0,0);
         .padding(10,10,10,10);
-        box-sizing: border-box;
         background: #fff;
         .address {
           width: 100%;
-          .h(40);
           .l_h(40);
           input {
             .w(200);
             .h(40);
             border-radius: 3px;
           }
+		  .address-wrap{
+			  background: none;
+			 li{
+			  .w(205);
+			  .h(40);
+			  padding: 0;
+			  .margin(0,0,0,22);
+			  border-bottom: 1px solid #ccc;
+			  background:#ffe;
+			  text-overflow: ellipsis;
+			  white-space: nowrap;
+			}  
+		  }
+		 
         }
       }
     }

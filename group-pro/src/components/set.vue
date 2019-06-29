@@ -89,6 +89,7 @@ export default {
       // console.log(token)
     },
     handleOut () {
+			
       MessageBox.confirm('确定要退出').then(action => {
         // 删除token
         myLocalStorage.remove('userToken')

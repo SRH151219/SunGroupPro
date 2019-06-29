@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
 		<router-view/>
-		<Footer class="footer"></Footer>
+		<Footer class="footer" ></Footer>
 	</div>
 </template>
 <script>
@@ -10,6 +10,7 @@ export default ({
 	components: {
 		Footer
 	}
+	
 })
 </script>
 <style lang="less">

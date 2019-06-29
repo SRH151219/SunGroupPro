@@ -13,7 +13,6 @@
         <div class="info">
           <p>昵称:
             <span>{{userName}}</span>
-
           </p>
           <p>性别:
             <span>{{userSex}}</span>
@@ -51,6 +50,9 @@
           <li>
             <span class="iconfont iconicon">
             </span>
+						<div class="obligation" v-if="show">
+							{{goodsNum}}
+						</div>
             <b>待付款</b>
           </li>
           <li>
@@ -107,13 +109,25 @@ export default {
     return {
       userImg: '',
       userSex: '',
-      userName: ''
+      userName: '',
+			goodsNum:"",
+			show:false
     }
   },
   created () {
     this.getInfo()
+		this.showGoodsSum()
   },
   methods: {
+		showGoodsSum(){
+			this.$store.commit("showGoodsNum")
+			this.goodsNum=this.$store.state.goodsNum
+			if(this.goodsNum!=0){
+				this.show=true
+			}else{
+				this.show=false
+			}
+		},
     handleGoSet () {
       this.$router.push('/userset')
     },
@@ -207,7 +221,7 @@ export default {
       font-size: @font-size-m;
       background: linear-gradient(-90deg, #fa4dbe, #fbaa58);
       border-radius: 10px;
-      margin-top: -20px;
+      .margin(20,0,0,0);
       .padding(10,15,10,15);
       ul {
         display: flex;
@@ -219,7 +233,7 @@ export default {
           flex-direction: column;
           align-items: center;
           b {
-            padding-top: 10px;
+            .padding(10,0,0,0);
           }
         }
       }
@@ -228,9 +242,8 @@ export default {
       font-size: @font-size-m;
       border-radius: 20px;
       background: #fff;
-      margin-top: 10px;
+      .margin(10,0,0,0);
       .one {
-        padding: 10px 15px;
         .padding(10,15,10,15);
         display: flex;
         justify-content: space-between;
@@ -244,18 +257,30 @@ export default {
       ul {
         display: flex;
         justify-content: space-between;
-        padding: 15px;
+        .padding(10,10,10,10);
         li {
           display: flex;
           flex-direction: column;
           align-items: center;
+					position: relative;
           span {
             font-size: 24px;
             color: #c33;
           }
+					.obligation{
+						.w(20);
+						.h(20);
+						.l_h(20);
+						text-align: center;
+						background: #c33;
+						position: absolute;
+						.top(-5);
+						.right(0);
+						border-radius: 50%;
+					}
           b {
             font-size: 14px;
-            padding-top: 10px;
+            .padding(10,0,0,0);
             color: #333;
           }
         }
@@ -281,7 +306,6 @@ export default {
         background: rgba(250, 245, 245, 0.3);
         font-size: 30px;
         text-align: center;
-        line-height: 300px;
         .l_h(300);
         color: #c33;
         writing-mode: tb-rl;
