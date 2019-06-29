@@ -83,11 +83,10 @@ export default {
 <style lang="less" scoped="scoped">
 @import "~style/index";
 .details{
-   -webkit-perspective: 1000px;
  position: fixed;
-  top: 0;
-  bottom: 0;
-  font-size: 14px;
+  .top(0);
+  .bottom(0);
+  .f_s(14);
   text-align: center;
   width: 100%;
     height: 100%;
@@ -96,14 +95,14 @@ export default {
     header{
       .w(375);
     text-align: center;
-    height: 50px;
+    .h(50);
     border-bottom: 1px solid #eee;
-    line-height: 50px;
+    .l_h(50);
     .back{
       display: block;
     position: absolute;
-    top: 0;
-    left: 5px;
+    .top(0);
+    .left(5);
     }
     }
     main{
@@ -122,17 +121,17 @@ export default {
       }
       .food-card{
             border: 1px solid #eee;
-    margin: 0 10px;
-    line-height: 40px;
+    .margin(0,10,0,10);
+    .l_h(40);
     .food-price{
       color: #ff65af;
     }
       }
       .food-intruction{
-        margin-top: 10px;
+        .margin(10,0,0,0);
     border: 1px solid #eee;
-    padding: 10px;
-    line-height: 20px;
+    .padding(10,10,10,10);
+    .l_h(20);
       }
     }
     /* footer{

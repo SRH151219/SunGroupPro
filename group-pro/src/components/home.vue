@@ -148,23 +148,23 @@ export default {
 @import "~style/index";
 .home {
 	position:fixed;
-	top: 0;
-	bottom: 0;
-  font-size: 14px;
+  .top(0);
+  .bottom(0);
+  .f_s(14);
   text-align: center;
   width: 100%;
-  padding-bottom: 65px;
+  .padding(0,0,65,0);
   header {
     width: 100%;
     background-color: #fff;
     z-index: 999;
     .top-text {
-      height: 45px;
-      line-height: 45px;
+      .h(45);
+      .l_h(45);
     }
     .top-nav {
-      width: 375px;
-      height: 39px;
+      width: 100%;
+      .h(39);
       background: #fff;
       border: 1px solid #dcdfe6;
       box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);
@@ -172,19 +172,18 @@ export default {
       ul {
         background-color: #f5f7fa;
         border-bottom: 1px solid #e4e7ed;
-        height: 39px;
+        .h(39);
         display: flex;
         justify-content: space-around;
         width: 200%;
         .item {
           flex: 1;
-          height: 40px;
-          -webkit-box-sizing: border-box;
+         .h(40);
           box-sizing: border-box;
-          line-height: 40px;
+          .l_h(40);
           display: inline-block;
           list-style: none;
-          font-size: 14px;
+         .f_s(14);
           font-weight: 500;
           color: #303133;
           position: relative;
@@ -201,24 +200,24 @@ export default {
   main {
 	  overflow: hidden;
 	  .w(375);
-	  .h(583);
+    .h(583);
+    .padding(0,0,60,0);
     div {
+      
       .foods {
         width: 100%;
         list-style: none;
-        padding: 0;
         li {
 			display: flex;
-          height: 130px;
+          .h(130);
           width: 100%;
-          font-size: 0;
+          .f_s(0);
           border-bottom: 1px solid #e4e7ed;
           background-color: #fff;
           .left {
 			  display: flex;
 			  justify-content: center;
-            font-size: 14px;
-            
+            .f_s(14);
             vertical-align: middle;
             width: 40%;
             height: 100%;
@@ -228,7 +227,7 @@ export default {
             }
           }
           .right {
-            font-size: 14px;
+            .f_s(14);
             display: inline-block;
             vertical-align: middle;
             box-sizing: border-box;
@@ -236,31 +235,31 @@ export default {
             height: 100%;
             width: 60%;
             text-align: left;
-            padding-left: 10px;
+           .padding(0,0,0,10);
             .text {
               position: absolute;
-              line-height: 30px;
+              .l_h(30);
               top: 50%;
               transform: translateY(-50%);
               .price-number {
                 color: #ff65af;
-                font-size: 18px;
+               .f_s(18);
                 font-weight: 600;
               }
             }
             .btn {
               position: absolute;
-              bottom: 5px;
-			  right: 10px;
+              .bottom(5);
+			        .right(10);
               .addBtn {
-                width: 20px;
+               .w(20);
                 color: #ff65af;
-                font-size: 18px;
+                .f_s(18);
                 border: 0;
               }
               .inputText {
                 display: inline-block;
-                width: 20px;
+               .w(20);
                 text-align: center;
                 border: none;
               }
@@ -269,9 +268,10 @@ export default {
         }
       }
       div {
+        .h(100px);
         p {
-          height: 40px;
-          line-height: 40px;
+          .h(40);
+          .l_h(40);
         }
       }
     }
