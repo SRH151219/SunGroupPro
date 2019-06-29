@@ -70,6 +70,7 @@ export default {
       this.$router.back()
     },
     handleModify () {
+      this.$router.push('/modifyInfo')
 
     },
     getToken () {
@@ -89,16 +90,12 @@ export default {
     },
     handleOut () {
       MessageBox.confirm('确定要退出').then(action => {
-        console.log(action)
         // 删除token
         myLocalStorage.remove('userToken')
         myLocalStorage.remove('userInfo')
         this.$router.push('/home')
 
-
-
       }).catch((data) => {
-        console.log(data)
       })
     },
     handleAddress () {
@@ -106,54 +103,6 @@ export default {
     }
   }
 }
-// import Cookies from "js-cookie";
-// import Vuex from "vuex";
-// export default {
-//   data () {
-//     return {
-//       visible2: false
-//     };
-//   },
-//   created () {
-//     this.obverser.$emit("changeState5");
-//   },
-//   destroyed () {
-//     this.obverser.$emit("changeState6");
-//   },
-//   methods: {
-//     //返回
-//     handleBack () {
-//       this.$router.back();
-//     },
-//     //点击退出
-//     open2 () {
-//       this.$confirm("确认退出当前用户吗？", "温馨提示", {
-//         confirmButtonText: "确定",
-//         cancelButtonText: "取消"
-//       })
-//         .then(() => {
-//           //点击确定执行
-//           Cookies.remove("token");
-//           this.$router.push("/mall");
-//         })
-//         .catch(() => {
-//           //点击取消执行
-//         });
-//     },
-//     //点击修改资料
-//     handleModify () {
-//       this.$router.push("/modifyInfo");
-//     }
-//   },
-//   computed: {
-//     ...Vuex.mapState({
-//       userInfo: state => state.my.userInfo
-//     })
-//   },
-//   mounted () {
-//     // console.log(this.userInfo);
-//   }
-// };
 </script>
 
 <style scoped lang='less'>
@@ -225,7 +174,7 @@ export default {
     padding-left: 15px;
   }
   .go {
-    .w(200);
+    .w(50);
     .h(50);
     .l_h(50);
     text-align: center;

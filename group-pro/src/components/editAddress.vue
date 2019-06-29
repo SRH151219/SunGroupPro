@@ -9,22 +9,29 @@
           <p>修改收货地址</p>
         </div>
         <div class="box">
+          <p class="warn">{{nameWarn}}</p>
           <mt-field label="收货人"
                     v-model="consignee"></mt-field>
+          <p class="warn">{{telWarn}}</p>
           <mt-field label="电话"
                     type="email"
                     v-model="tel"></mt-field>
+          <p class="warn">{{cityWarn}}</p>
+
           <mt-field label="所在城市"
                     type="text"
                     v-model="city"></mt-field>
+          <p class="warn">{{addressWarn}}</p>
+
           <mt-field label="收货地址"
                     type="text"
                     v-model="adressdetails"></mt-field>
-          <div class="btn">
-            <button @click="handleModify">保存修改</button>
-            <button @click="handleDel">删除收货地址</button>
 
-          </div>
+        </div>
+        <div class="btn">
+          <button @click="handleModify">保存修改</button>
+          <button @click="handleDel">删除收货地址</button>
+
         </div>
       </div>
 
@@ -44,7 +51,11 @@ export default {
       tel: '',
       city: '',
       adressdetails: '',
-      id: ''
+      id: '',
+      nameWarn: '',
+      telWarn: '',
+      cityWarn: '',
+      addressWarn: ''
 
     }
   },
@@ -66,17 +77,37 @@ export default {
       this.$router.back()
     },
     handleModify () {
-      let obj = {}
-      obj.consignee = this.consignee
-      obj.city = this.city
-      obj.tel = this.tel
-      obj.adressdetails = this.adressdetails
-      obj.id = this.id
-      this.modifyAddress(obj)
-      MessageBox.alert('修改成功!').then(() => {
-        this.$router.push('/address')
+      this.nameWarn = ''
+      this.telWarn = ''
+      this.cityWarn = ''
+      this.addressWarn = ''
 
-      })
+      var telReg = /^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}$/
+      if (!telReg.test(this.tel)) {
+        this.telWarn = '电话号码格式不正确'
+      }
+      if (this.consignee === '') {
+        this.nameWarn = '收货人不能为空'
+      }
+      if (this.city === '') {
+        this.cityWarn = '城市不能为空'
+      }
+      if (this.adressdetails === '') {
+        this.addressWarn = '收货地址不能为空'
+      }
+      if (telReg.test(this.tel) && this.consignee !== '' && this.city !== '' && this.adressdetails !== '') {
+        let obj = {}
+        obj.consignee = this.consignee
+        obj.city = this.city
+        obj.tel = this.tel
+        obj.adressdetails = this.adressdetails
+        obj.id = this.id
+        this.modifyAddress(obj)
+        MessageBox.alert('修改成功!').then(() => {
+          this.$router.push('/address')
+
+        })
+      }
 
     },
     handleDel () {
@@ -148,25 +179,31 @@ export default {
   }
   .box {
     background: #fff;
-    .btn {
-      margin-top: 100px;
+    p {
       text-align: center;
-      button {
-        border: 0;
-        color: #fff;
-        font-size: 14px;
-        font-weight: 900;
-        border-radius: 5px;
-        .padding(12,20,12,20);
-      }
-      button:nth-of-type(1) {
-        background: #409eff;
-        margin-right: 20px;
-      }
-      button:nth-of-type(2) {
-        background: #f56c6c;
-        margin-right: 20px;
-      }
+      color: red;
+      width: 100%;
+      .h(22);
+    }
+  }
+  .btn {
+    margin-top: 100px;
+    text-align: center;
+    button {
+      border: 0;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 900;
+      border-radius: 5px;
+      .padding(12,20,12,20);
+    }
+    button:nth-of-type(1) {
+      background: #409eff;
+      margin-right: 20px;
+    }
+    button:nth-of-type(2) {
+      background: #f56c6c;
+      margin-right: 20px;
     }
   }
 }

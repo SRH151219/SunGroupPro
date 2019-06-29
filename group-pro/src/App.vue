@@ -22,5 +22,6 @@ export default ({
   position: fixed;
   bottom: 0;
   left: 0;
+  background: #fff;
 }
 </style>

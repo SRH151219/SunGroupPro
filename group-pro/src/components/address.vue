@@ -52,14 +52,6 @@ export default {
     handleBack () {
       this.$router.back()
     },
-    getAddress () {
-      this.$axios({
-        method: 'post',
-        url: 'https://www.easy-mock.com/mock/5d1587c3c365eb72765bef9d/api	/users/getAddress'
-      }).then((data) => {
-        this.saveAddress(data.data)
-      })
-    },
     initBs () {
       var scroll = new Bscroll('.addressWrapper', {
         click: true
@@ -71,6 +63,15 @@ export default {
     },
     handleAdd () {
       this.$router.push('/address/add')
+    },
+    getAddress () {
+      this.$axios({
+        method: 'post',
+        url: 'https://www.easy-mock.com/mock/5d1587c3c365eb72765bef9d/api	/users/getAddress'
+      }).then((data) => {
+        // 保存到vuex
+        this.saveAddress(data.data)
+      })
     }
   },
   mounted () {

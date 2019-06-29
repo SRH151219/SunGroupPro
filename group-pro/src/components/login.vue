@@ -34,6 +34,8 @@
 
 <script>
 import myLocalStorage from 'utils/myStorage'
+import { mapMutations } from 'vuex'
+
 export default {
   data () {
     return {
@@ -45,8 +47,12 @@ export default {
     }
   },
   methods: {
+    ...mapMutations({
+      saveAddress: 'my/saveAddress',
+      getUserInfo: 'my/getUserInfo'
+    }),
     handleBack () {
-
+      this.$router.back()
     },
     handleLogin () {
       //用户名： 6-20个 中文、英文、数字但不包括下划线等符号
@@ -76,7 +82,6 @@ export default {
           method: 'post',
           url: ' https://www.easy-mock.com/mock/5d1587c3c365eb72765bef9d/api/users/login'
         }).then((res) => {
-          console.log(res)
           var data = res.data;
           if (this.userName === data.username && this.userPwd === data.userpwd) {
             this.tip = '登录成功'
@@ -86,7 +91,9 @@ export default {
               // 将数据本地化存储，3天
               myLocalStorage.set('userToken', res.usertoken, 3)
               myLocalStorage.set('userInfo', data, 3)
-
+              this.getUserInfo(data)
+              // 登录成功，获取address
+              this.getAddress()
             }, 500)
 
           } else {
@@ -102,8 +109,21 @@ export default {
     },
     handleRegister () {
       this.$router.push('/register')
-
+    },
+    getAddress () {
+      this.$axios({
+        method: 'post',
+        url: 'https://www.easy-mock.com/mock/5d1587c3c365eb72765bef9d/api	/users/getAddress'
+      }).then((data) => {
+        // 保存到vuex
+        this.saveAddress(data.data)
+        // 保存到 localstorage
+        myLocalStorage.set('address', data.data, 7)
+      })
     }
+  },
+  mounted () {
+    //
   }
 }
 </script>

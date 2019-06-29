@@ -5,6 +5,7 @@ import store from './store/store'
 
 import axios from './common/utils/axios'
 Vue.prototype.$axios = axios
+Vue.prototype.$observer = new Vue()
 
 // 引入iconfont公共样式
 import 'common/myIconfont/iconfont.css'
