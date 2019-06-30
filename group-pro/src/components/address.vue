@@ -117,7 +117,7 @@ export default {
     width: 100%;
     position: fixed;
     .top(56);
-    .bottom(100);
+    .bottom(45);
     overflow: hidden;
     .addressContent {
       width: 100%;
@@ -147,7 +147,7 @@ export default {
   }
   .addAddress {
     position: fixed;
-    .bottom(53);
+    .bottom(0);
     width: 100%;
     .h(45);
     background: orange;
