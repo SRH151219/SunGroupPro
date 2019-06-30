@@ -16,12 +16,12 @@ import myLocalStorage from 'utils/myStorage'
 Vue.use(Router)
 
 let router = new Router({
-	mode: 'history',
+	// mode: 'history',
 	base: process.env.BASE_URL,
 	routes: [{
 			path: "/",
-			redirect: "/login",
-			component: Login
+			redirect: "/home",
+			component: Home
 		},
 		{
 			path: "/shopCar",
@@ -29,7 +29,10 @@ let router = new Router({
 		},
 		{
 			path: "/my",
-			component: My
+			component: My,
+			meta: {
+				isLogin: true
+			}
 		},
 		{
 			path: "/login",
@@ -79,14 +82,7 @@ let router = new Router({
 
 		},
 		{
-			path: "/my",
-			component: My,
-			meta: {
-				isLogin: true
-			}
-		},
-		{
-			path: "/pay",
+			path: "/ ",
 			name: "pay",
 			component: Pay,
 			meta: {
@@ -102,6 +98,7 @@ router.beforeEach((to, from, next) => {
 	let token = myLocalStorage.get('userToken')
 	if (to.meta.isLogin) {
 		if (token) {
+			console.log(to.meta.isLogin)
 			next()
 		} else {
 			next('/login')

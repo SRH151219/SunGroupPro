@@ -159,14 +159,11 @@ export default ({
 			this.$store.commit("addInfo", id)
 		},
 		goPay () {
-			if (localStorage.userToken!="") {//去结算
+			if (localStorage.userToken != "") {//去结算
 				console.log(localStorage.userToken)
 				this.$store.commit("changeSumPrice", this.sumPrice)
 				this.$router.push({ name: "pay", params: { info: this.list, price: this.sumPrice } })
-			} else {
-				this.$router.push("/login")
 			}
-			
 		},
 		isShow () {
 			if (this.$store.state.info.length == 0) {

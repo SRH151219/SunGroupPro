@@ -50,9 +50,10 @@
           <li>
             <span class="iconfont iconicon">
             </span>
-						<div class="obligation" v-if="show">
-							{{goodsNum}}
-						</div>
+            <div class="obligation"
+                 v-if="show">
+              {{goodsNum}}
+            </div>
             <b>待付款</b>
           </li>
           <li>
@@ -110,24 +111,24 @@ export default {
       userImg: '',
       userSex: '',
       userName: '',
-			goodsNum:"",
-			show:false
+      goodsNum: "",
+      show: false
     }
   },
   created () {
     this.getInfo()
-		this.showGoodsSum()
+    this.showGoodsSum()
   },
   methods: {
-		showGoodsSum(){
-			this.$store.commit("showGoodsNum")
-			this.goodsNum=this.$store.state.goodsNum
-			if(this.goodsNum!=0){
-				this.show=true
-			}else{
-				this.show=false
-			}
-		},
+    showGoodsSum () {
+      this.$store.commit("showGoodsNum")
+      this.goodsNum = this.$store.state.goodsNum
+      if (this.goodsNum != 0) {
+        this.show = true
+      } else {
+        this.show = false
+      }
+    },
     handleGoSet () {
       this.$router.push('/userset')
     },
@@ -141,9 +142,10 @@ export default {
         this.userImg = userImg
         this.userSex = userSex
         this.userName = username
-      } else {
-        this.$router.push('/login')
       }
+      // else {
+      //   this.$router.push('/login')
+      // }
     }
   }
 }
@@ -262,22 +264,22 @@ export default {
           display: flex;
           flex-direction: column;
           align-items: center;
-					position: relative;
+          position: relative;
           span {
             font-size: 24px;
             color: #c33;
           }
-					.obligation{
-						.w(20);
-						.h(20);
-						.l_h(20);
-						text-align: center;
-						background: #c33;
-						position: absolute;
-						.top(-5);
-						.right(0);
-						border-radius: 50%;
-					}
+          .obligation {
+            .w(20);
+            .h(20);
+            .l_h(20);
+            text-align: center;
+            background: #c33;
+            position: absolute;
+            .top(-5);
+            .right(0);
+            border-radius: 50%;
+          }
           b {
             font-size: 14px;
             .padding(10,0,0,0);

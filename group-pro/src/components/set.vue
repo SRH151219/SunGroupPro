@@ -83,13 +83,14 @@ export default {
         this.userImg = userImg
         this.userSex = userSex
         this.userName = username
-      } else {
-        this.$router.push('/login')
       }
+      //  else {
+      //   this.$router.push('/login')
+      // }
       // console.log(token)
     },
     handleOut () {
-			
+
       MessageBox.confirm('确定要退出').then(action => {
         // 删除token
         myLocalStorage.remove('userToken')
