@@ -47,7 +47,7 @@
           <p>查看全部订单&gt;</p>
         </div>
         <ul>
-          <li>
+          <li @click="obligation">
             <span class="iconfont iconicon">
             </span>
 						<div class="obligation" v-if="show">
@@ -144,7 +144,10 @@ export default {
       } else {
         this.$router.push('/login')
       }
-    }
+    },
+		obligation(){
+			this.$router.push("/pay")
+		}
   }
 }
 </script>

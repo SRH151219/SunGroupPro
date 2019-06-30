@@ -1,8 +1,8 @@
 <template>
   <div id="login">
-    <!-- <div class="back iconfont iconIcon-fanhui
+    <div class="back iconfont iconIcon-fanhui
 "
-         @click="handleBack"> </div> -->
+         @click="handleBack"> </div>
     <div class="con">
       <p>登录</p>
       <p class="tips">{{tip}}</p>
@@ -51,10 +51,10 @@ export default {
       saveAddress: 'my/saveAddress',
       getUserInfo: 'my/getUserInfo'
     }),
-  /*  handleBack () {
-      this.$router.push("/home")
+   handleBack (){
+      this.$router.go(-1)
 			this.$store.commit("changeShowFooter",true)
-    }, */
+    },
     handleLogin () {
       //用户名： 6-20个 中文、英文、数字但不包括下划线等符号
       var reg1 = /^[\u4E00-\u9FA5A-Za-z0-9]{6,20}$/
@@ -125,7 +125,7 @@ export default {
     }
   },
   mounted () {
-    
+    this.$store.commit("changeShowFooter",false)
   }
 }
 </script>

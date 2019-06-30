@@ -72,15 +72,13 @@ export default ({
 			this.show=false
 		},
 		goPay () {
-			
 			alert("支付成功")
 		}
 	},
 	mounted () {
 		this.addressList=this.$store.state.my.addressList
-		console.log(this.addressList)
-		this.list = this.$route.params.info
-		this.price = this.$route.params.price
+		this.list=JSON.parse(localStorage.info)
+		this.price=JSON.parse(localStorage.sumPrice)
 		this.scroll=new BS(".scroll-box",{click:true})	
 	}
 })

@@ -20,16 +20,12 @@ let router = new Router({
 	base: process.env.BASE_URL,
 	routes: [{
 			path: "/",
-			redirect: "/login",
-			component: Login
+			redirect: "/home",
+			component: Home
 		},
 		{
 			path: "/shopCar",
 			component: ShopCar
-		},
-		{
-			path: "/my",
-			component: My
 		},
 		{
 			path: "/login",
@@ -97,7 +93,7 @@ let router = new Router({
 })
 
 // 全局守卫
-router.beforeEach((to, from, next) => {
+/* router.beforeEach((to, from, next) => {
 	// token
 	let token = myLocalStorage.get('userToken')
 	if (to.meta.isLogin) {
@@ -109,6 +105,6 @@ router.beforeEach((to, from, next) => {
 	}
 	next()
 
-})
+}) */
 
 export default router

@@ -68,6 +68,7 @@ export default {
 
     handleBack () {
       this.$router.back()
+			this.$store.commit("changeShowFooter",true)
     },
     handleModify () {
       this.$router.push('/modifyInfo')
@@ -102,7 +103,10 @@ export default {
     handleAddress () {
       this.$router.push('/address')
     }
-  }
+  },
+	mounted() {
+		this.$store.commit("changeShowFooter",false)
+	}
 }
 </script>
 
