@@ -47,7 +47,7 @@
           <p>查看全部订单&gt;</p>
         </div>
         <ul>
-          <li>
+          <li @click="obligation">
             <span class="iconfont iconicon">
             </span>
             <div class="obligation"
@@ -143,9 +143,10 @@ export default {
         this.userSex = userSex
         this.userName = username
       }
-      // else {
-      //   this.$router.push('/login')
-      // }
+    },
+    obligation () {
+
+      this.$router.push("/pay")
     }
   }
 }

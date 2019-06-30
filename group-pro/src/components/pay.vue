@@ -20,9 +20,14 @@
 				</div>
 				<div class="address-box">
 					<div class="address">
-						地址:<input type="text" readonly="readonly" @click="showAddress" v-model="addressInfo"/>
-						<ul class="address-wrap" v-if="show">
-							<li v-for="(item,index) in addressList" @click="putAddress(index)">{{item.adressdetails}}</li>
+						地址:<input type="text"
+						       readonly="readonly"
+						       @click="showAddress"
+						       v-model="addressInfo" />
+						<ul class="address-wrap"
+						    v-if="show">
+							<li v-for="(item,index) in addressList"
+							    @click="putAddress(index)">{{item.adressdetails}}</li>
 						</ul>
 					</div>
 					<div class="white-box"></div>
@@ -43,45 +48,45 @@
 </template>
 
 <script>
-	import BS from "better-scroll"
+import BS from "better-scroll"
+import myLocalStorage from 'utils/myStorage'
 export default ({
 	data () {
 		return {
 			list: "",
 			price: "",
-			addressList:"",
-			show:false,
-			addressInfo:""
+			addressList: "",
+			show: false,
+			addressInfo: ""
 		}
 	},
 	computed: {
-		
+
 	},
-	watch:{
-		
+	watch: {
+
 	},
 	methods: {
 		back () {
 			this.$router.push("/shopCar")
 		},
-		showAddress(){
-			this.show=true
+		showAddress () {
+			this.show = true
 		},
-		putAddress(index){
-			this.addressInfo=this.addressList[index].adressdetails
-			this.show=false
+		putAddress (index) {
+			this.addressInfo = this.addressList[index].adressdetails
+			this.show = false
 		},
 		goPay () {
-			
 			alert("支付成功")
 		}
 	},
 	mounted () {
-		this.addressList=this.$store.state.my.addressList
+		this.addressList = myLocalStorage.get('address')
 		console.log(this.addressList)
-		this.list = this.$route.params.info
-		this.price = this.$route.params.price
-		this.scroll=new BS(".scroll-box",{click:true})	
+		this.list = JSON.parse(localStorage.info)
+		this.price = JSON.parse(localStorage.sumPrice)
+		this.scroll = new BS(".scroll-box", { click: true })
 	}
 })
 </script>
@@ -101,15 +106,15 @@ export default ({
     .l_h(50);
     background: #fff;
     text-align: center;
-    i{
+    i {
       .w(50);
       .h(50);
       .l_h(50);
-	  font-style: italic;
+      font-style: italic;
       text-align: center;
-     position: absolute;
-	 top: 0;
-	 left: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
     }
   }
   .scroll-box {
@@ -117,9 +122,8 @@ export default ({
     position: fixed;
     .top(60);
     .bottom(40);
-	overflow: hidden;
+    overflow: hidden;
     .min {
-		
       ul {
         .w(375);
         .padding(10,10,10,10);
@@ -162,20 +166,19 @@ export default ({
             .h(40);
             border-radius: 3px;
           }
-		  .address-wrap{
-			  background: none;
-			 li{
-			  .w(205);
-			  .h(40);
-			  padding: 0;
-			  .margin(0,0,0,22);
-			  border-bottom: 1px solid #ccc;
-			  background:#ffe;
-			  text-overflow: ellipsis;
-			  white-space: nowrap;
-			}  
-		  }
-		 
+          .address-wrap {
+            background: none;
+            li {
+              .w(205);
+              .h(40);
+              padding: 0;
+              .margin(0,0,0,22);
+              border-bottom: 1px solid #ccc;
+              background: #ffe;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+            }
+          }
         }
       }
     }

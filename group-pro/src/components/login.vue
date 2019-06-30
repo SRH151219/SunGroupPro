@@ -50,9 +50,8 @@ export default {
       getUserInfo: 'my/getUserInfo'
     }),
     handleBack () {
-      // this.$router.push("/back")
-      this.$router.back()
-      // this.$store.commit("changeShowFooter",true)
+      this.$router.go(-1)
+      this.$store.commit("changeShowFooter", true)
     },
     handleLogin () {
       //用户名： 6-20个 中文、英文、数字但不包括下划线等符号
@@ -124,7 +123,7 @@ export default {
     }
   },
   mounted () {
-
+    this.$store.commit("changeShowFooter", false)
   }
 }
 </script>

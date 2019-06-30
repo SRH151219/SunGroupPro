@@ -24,10 +24,6 @@ let router = new Router({
 			component: Home
 		},
 		{
-			path: "/shopCar",
-			component: ShopCar
-		},
-		{
 			path: "/my",
 			component: My,
 			meta: {
@@ -73,16 +69,12 @@ let router = new Router({
 			}]
 		},
 		{
-			path: "/home",
-			component: Home
-		},
-		{
 			path: "/shopCar",
 			component: ShopCar
 
 		},
 		{
-			path: "/ ",
+			path: "/pay",
 			name: "pay",
 			component: Pay,
 			meta: {

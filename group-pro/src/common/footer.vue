@@ -34,7 +34,13 @@
 		},
 		methods:{
 			goMy(){
-				this.$store.commit("changeShowFooter",true)
+				if(localStorage.userToken){
+					this.$router.push("/my")
+					this.$store.commit("changeShowFooter",true)
+				}else{
+					this.$router.push("/login")
+				}
+				
 			}
 		},
 		mounted(){
