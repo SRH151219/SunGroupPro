@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view/>
+   <router-view/>
 		<Footer class="footer"></Footer>
   </div>
 </template>
@@ -17,6 +17,8 @@
 	.footer{
 		position: fixed;
 		bottom: 0;
-		left: 0
+		left: 0;
+		background:#fff;
+		z-index: 11;
 	}
 </style>
