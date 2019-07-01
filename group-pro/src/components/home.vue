@@ -19,7 +19,7 @@
                   :auto="4000">
           <mt-swipe-item v-for="(item,index) in swiperImg"
                          :key="index">
-            <img :src="item"
+            <img v-lazy="item"
                  alt="">
           </mt-swipe-item>
         </mt-swipe>
@@ -28,7 +28,7 @@
               :key="index">
             <div @click="toDetails(item)"
                  class="left">
-              <img :src="item.img"
+              <img v-lazy="item.img"
                    alt>
             </div>
             <div class="right">
@@ -312,7 +312,7 @@ export default {
                 border-radius: 50%;
                 .w(20);
                 .h(20);
-                .l_h(18);
+                .l_h(20);
                 background: #2be2e8;
                 text-align: center;
                 color: #ffffff;
