@@ -229,7 +229,7 @@ export default {
       border-bottom: 1px solid #ccc;
       span {
         display: inline-block;
-        .w(90);
+        .w(100);
         text-align: center;
       }
       .inputCss {
