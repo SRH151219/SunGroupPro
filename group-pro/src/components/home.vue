@@ -16,9 +16,9 @@
     </header>
     <main class="homeScroll">
       <div>
-        <mt-swipe style="height:180px" :auto="4000">
+        <mt-swipe class="scrollBox"  :auto="4000">
           <mt-swipe-item v-for="(item,index) in swiperImg" :key="index">
-            <img  style="width:100%;height:180px" :src="item" alt="">
+            <img   :src="item" alt="">
           </mt-swipe-item>
         </mt-swipe>
         <ul class="foods">
@@ -38,13 +38,9 @@
                 </div>
               </div>
               <div class="btn">
-                <button @click="del(item.id,index)" class="addBtn min">
-                  <img  src="/static/imgs/bg/del.jpg" height="20" width="20" slot="icon">
-                </button>
-                <input ref="inputText" class="inputText" :value="item.num">
-                <button @click="add(item.id,index)" class="addBtn add">
-                  <img src="/static/imgs/bg/add.jpg" height="20" width="20" slot="icon">
-                </button>
+                <i @click="del(item.id,index)" class="addBtn min">-</i>
+                <span ref="inputText" class="inputText">{{item.num}}</span>
+                <i @click="add(item.id,index)" class="addBtn add">+</i>
               </div>
             </div>
           </li>
@@ -81,8 +77,7 @@ export default {
       '/static/imgs/nav/1.jpg',
       '/static/imgs/nav/2.jpg',
       '/static/imgs/nav/3.jpg',
-      '/static/imgs/nav/5.jpg',
-      '/static/imgs/nav/6.jpg'
+      '/static/imgs/nav/4.jpg'
     ]
     };
   },
@@ -131,19 +126,20 @@ export default {
 	  let arr=this.$store.state.info
 		for (let index = 0; index < arr.length; index++) { 
 			if(arr[index].id==_id){
-				this.$refs.inputText[_ind].value=arr[index].num
+				this.$refs.inputText[_ind].innerHTML=arr[index].num
 			}  
     	  } 
     },
     del(_id,_ind) {
-      if (this.$refs.inputText[_ind].value <=0) {
-        this.$refs.inputText[_ind].value = 0;
-      } else {
+			if(this.$refs.inputText[_ind].innerHTML==1){
+				 this.$refs.inputText[_ind].innerHTML = 0;
+				this.$store.commit("moveInfo", _id);	
+			}else {
 		this.$store.commit("delInfo", _id);
 		let arr=this.$store.state.info
         for (let index = 0; index < arr.length; index++) { 
 			if(arr[index].id==_id){
-				this.$refs.inputText[_ind].value=arr[index].num
+				this.$refs.inputText[_ind].innerHTML=arr[index].num
 			}  
     	  } 
 	  }
@@ -232,7 +228,14 @@ export default {
     .h(583);
     .padding(0,0,60,0);
     div {
-      
+      .scrollBox{
+        .w(375);
+        .h(180);
+        img{
+           .w(375);
+        .h(180);
+        }
+      }
       .foods {
         width: 100%;
         list-style: none;
@@ -242,7 +245,8 @@ export default {
           width: 100%;
           .f_s(0);
           border-bottom: 1px solid #e4e7ed;
-          background-color:rgba(0, 0, 0, .4);
+          background-color:rgba(255, 255, 255, .8);
+          background-size: 100%;
           .left {
 			  display: flex;
 			  justify-content: center;
@@ -270,6 +274,10 @@ export default {
               .l_h(30);
               top: 50%;
               transform: translateY(-50%);
+              .title{
+                font-style: italic;
+                color: red;
+              }
               .content{
                 .w(200);
                 .h(30);
@@ -291,11 +299,15 @@ export default {
               display: flex;
               
               .addBtn {
+                font-weight: 400;
                 padding: 0;
                 border-radius: 50%;
                .w(20);
                .h(20);
-                color: #ff65af;
+               .l_h(18);
+               background: #2be2e8;
+               text-align: center;
+                color: #ffffff;
                 .f_s(18);
                 border: 0;
               }

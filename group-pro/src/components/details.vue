@@ -47,9 +47,11 @@ export default {
   methods:{
     back(){
       this.$router.go(-1)
+			this.$store.commit("changeShowFooter",true)
     },
     toCar(){
       this.$router.push('/shopCar')
+			this.$store.commit("changeShowFooter",true)
     },
     add(id) {
       this.$store.commit("addInfo", id);
