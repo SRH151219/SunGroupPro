@@ -26,27 +26,27 @@
 </template>
 
 <script>
-	export default({
-		data(){
-			return{
-				show:true
-			}
-		},
-		methods:{
-			goMy(){
-				if(localStorage.userToken){
-					this.$router.push("/my")
-					this.$store.commit("changeShowFooter",true)
-				}else{
-					this.$router.push("/login")
-				}
-				
-			}
-		},
-		mounted(){
-			this.goMy()
-		}
-	})
+export default ({
+  data () {
+    return {
+      show: true
+    }
+  },
+  methods: {
+    goMy () {
+      if (localStorage.userToken) {
+        this.$router.push("/my")
+        this.$store.commit("changeShowFooter", true)
+      } else {
+        this.$router.push("/login")
+      }
+
+    }
+  },
+  mounted () {
+
+  }
+})
 </script>
 
 <style lang="less" scoped="scoped">

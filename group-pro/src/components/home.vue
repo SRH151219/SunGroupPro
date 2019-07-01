@@ -4,24 +4,26 @@
       <div class="top-text">一小时达</div>
       <div class="top-nav">
         <ul>
-          <li
-            :class="['item',navIndex==index?'active':'']"
-            v-for="(item,index) in navList"
-            :key="index"
-            @click="toKind(item,index)"
-          >{{item.name}}</li>
+          <li :class="['item',navIndex==index?'active':'']"
+              v-for="(item,index) in navList"
+              :key="index"
+              @click="toKind(item,index)">{{item.name}}</li>
         </ul>
       </div>
     </header>
     <main class="homeScroll">
       <div>
         <ul class="foods">
-          <li v-for="(item,index) in mainInfo" :key="index">
-            <div @click="toDetails(item)"  class="left">
-              <img :src="item.img" alt>
+          <li v-for="(item,index) in mainInfo"
+              :key="index">
+            <div @click="toDetails(item)"
+                 class="left">
+              <img :src="item.img"
+                   alt>
             </div>
             <div class="right">
-              <div @click="toDetails(item)" class="text">
+              <div @click="toDetails(item)"
+                   class="text">
                 <h3 class="title">{{item.title}}</h3>
                 <p class="coontent">{{item.content}}</p>
                 <div>
@@ -32,9 +34,17 @@
                 </div>
               </div>
               <div class="btn">
-                <input @click="del(item.id,index)" class="addBtn min" type="button" value="-">
-                <input ref="inputText" class="inputText" :value="item.num">
-                <input @click="add(item.id,index)" class="addBtn add" type="button" value="+">
+                <input @click="del(item.id,index)"
+                       class="addBtn min"
+                       type="button"
+                       value="-">
+                <input ref="inputText"
+                       class="inputText"
+                       :value="item.num">
+                <input @click="add(item.id,index)"
+                       class="addBtn add"
+                       type="button"
+                       value="+">
               </div>
             </div>
           </li>
@@ -44,7 +54,7 @@
         </div>
       </div>
     </main>
-	<router-view></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -53,7 +63,7 @@ import $ from "jquery";
 import BScroll from "better-scroll";
 import { constants } from 'crypto';
 export default {
-  data() {
+  data () {
     return {
       navList: [
         { name: "全部" },
@@ -66,90 +76,90 @@ export default {
         { name: "零食", kind: 7 }
       ],
       navIndex: 0,
-	  mainInfo: []
+      mainInfo: []
     };
   },
   methods: {
-	  toDetails(item){//去详情页
-		 this.state=!this.state
-		  this.$router.push({name:'details',params:{Info:item}})
-			this.$store.commit("changeShowFooter",false)
-	  },
-    getInfo() {//获取数据
+    toDetails (item) {//去详情页
+      this.state = !this.state
+      this.$router.push({ name: 'details', params: { Info: item } })
+      this.$store.commit("changeShowFooter", false)
+    },
+    getInfo () {//获取数据
       this.$axios.get("/goods.json").then(res => {
-		   this.$store.state.foodInfo=res
-		   this.getData()
+        this.$store.state.foodInfo = res
+        this.getData()
       });
-	},
-	getData(k){
-		this.mainInfo = [];
-		if (!k) {
-          this.mainInfo = this.$store.state.foodInfo;
-        } else {
-          this.$store.state.foodInfo.filter((item, index, array) => {
-            if (item.kind == k) {
-              this.mainInfo.push(item);
-            }
-          });
-		}
-      
-	},
-	getNum(){
-		let arr=this.$store.state.info
+    },
+    getData (k) {
+      this.mainInfo = [];
+      if (!k) {
+        this.mainInfo = this.$store.state.foodInfo;
+      } else {
+        this.$store.state.foodInfo.filter((item, index, array) => {
+          if (item.kind == k) {
+            this.mainInfo.push(item);
+          }
+        });
+      }
+
+    },
+    getNum () {
+      let arr = this.$store.state.info
       for (let i = 0; i < this.mainInfo.length; i++) {
-		  for (let j = 0; j < arr.length; j++) { 
-				if(arr[j].id==this.mainInfo[i].id){
-				this.mainInfo[i].num=arr[j].num
-				}  
-			}  
-	  }
-	},
-    toKind(item, index) {
-	  this.navIndex = index;
-	  this.getData(item.kind);
-	  this.getNum()
+        for (let j = 0; j < arr.length; j++) {
+          if (arr[j].id == this.mainInfo[i].id) {
+            this.mainInfo[i].num = arr[j].num
+          }
+        }
+      }
     },
-    add(_id,_ind) {
-	  this.$store.commit("addInfo", _id);
-	  let arr=this.$store.state.info
-		for (let index = 0; index < arr.length; index++) { 
-			if(arr[index].id==_id){
-				this.$refs.inputText[_ind].value=arr[index].num
-			}  
-    	  } 
+    toKind (item, index) {
+      this.navIndex = index;
+      this.getData(item.kind);
+      this.getNum()
     },
-    del(_id,_ind) {
-			if(this.$refs.inputText[_ind].value==1){
-				 this.$refs.inputText[_ind].value = 0;
-				this.$store.commit("moveInfo", _id);	
-			}else {
-		this.$store.commit("delInfo", _id);
-		let arr=this.$store.state.info
-        for (let index = 0; index < arr.length; index++) { 
-			if(arr[index].id==_id){
-				this.$refs.inputText[_ind].value=arr[index].num
-			}  
-    	  } 
-	  }
+    add (_id, _ind) {
+      this.$store.commit("addInfo", _id);
+      let arr = this.$store.state.info
+      for (let index = 0; index < arr.length; index++) {
+        if (arr[index].id == _id) {
+          this.$refs.inputText[_ind].value = arr[index].num
+        }
+      }
+    },
+    del (_id, _ind) {
+      if (this.$refs.inputText[_ind].value == 1) {
+        this.$refs.inputText[_ind].value = 0;
+        this.$store.commit("moveInfo", _id);
+      } else {
+        this.$store.commit("delInfo", _id);
+        let arr = this.$store.state.info
+        for (let index = 0; index < arr.length; index++) {
+          if (arr[index].id == _id) {
+            this.$refs.inputText[_ind].value = arr[index].num
+          }
+        }
+      }
     }
   },
-  mounted(){
-	this.getInfo();
-   let navBS= new BScroll(".top-nav", {click: true, scrollX: true });
-    let homeBS= new BScroll(".homeScroll", {click: true});
+  mounted () {
+    this.getInfo();
+    let navBS = new BScroll(".top-nav", { click: true, scrollX: true });
+    let homeBS = new BScroll(".homeScroll", { click: true });
   },
-  beforeUpdate(to,from,next){
-    console.log('守卫')
+  beforeUpdate (to, from, next) {
+    // console.log('守卫')
     this.getNum()
     next
   }
-	
+
 };
 </script>
 <style lang="less" scoped="scoped">
-@import "~style/index";
+@import '~style/index';
 .home {
-	position:fixed;
+  position: fixed;
   .top(0);
   .bottom(0);
   .f_s(14);
@@ -180,12 +190,12 @@ export default {
         width: 200%;
         .item {
           flex: 1;
-         .h(40);
+          .h(40);
           box-sizing: border-box;
           .l_h(40);
           display: inline-block;
           list-style: none;
-         .f_s(14);
+          .f_s(14);
           font-weight: 500;
           color: #303133;
           position: relative;
@@ -200,25 +210,24 @@ export default {
     }
   }
   main {
-	  overflow: hidden;
-	  .w(375);
+    overflow: hidden;
+    .w(375);
     .h(583);
     .padding(0,0,60,0);
     div {
-      
       .foods {
         width: 100%;
         list-style: none;
         li {
-			display: flex;
+          display: flex;
           .h(130);
           width: 100%;
           .f_s(0);
           border-bottom: 1px solid #e4e7ed;
           background-color: #fff;
           .left {
-			  display: flex;
-			  justify-content: center;
+            display: flex;
+            justify-content: center;
             .f_s(14);
             vertical-align: middle;
             width: 40%;
@@ -237,7 +246,7 @@ export default {
             height: 100%;
             width: 60%;
             text-align: left;
-           .padding(0,0,0,10);
+            .padding(0,0,0,10);
             .text {
               position: absolute;
               .l_h(30);
@@ -245,23 +254,23 @@ export default {
               transform: translateY(-50%);
               .price-number {
                 color: #ff65af;
-               .f_s(18);
+                .f_s(18);
                 font-weight: 600;
               }
             }
             .btn {
               position: absolute;
               .bottom(5);
-			        .right(10);
+              .right(10);
               .addBtn {
-               .w(20);
+                .w(20);
                 color: #ff65af;
                 .f_s(18);
                 border: 0;
               }
               .inputText {
                 display: inline-block;
-               .w(20);
+                .w(20);
                 text-align: center;
                 border: none;
               }

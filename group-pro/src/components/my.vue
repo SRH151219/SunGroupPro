@@ -145,7 +145,6 @@ export default {
       }
     },
     obligation () {
-
       this.$router.push("/pay")
     }
   }
