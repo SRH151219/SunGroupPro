@@ -7,7 +7,7 @@
 		<div class="scroll-box">
 			<div class="min">
 				<ul>
-					<li v-for="(item,index) in list">
+					<li v-for="(item,index) in list" :key="index">
 						<img :src="item.img" />
 						<p>{{item.num}}</p>
 					</li>

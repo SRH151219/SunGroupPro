@@ -44,7 +44,6 @@ export default ({
     }
   },
   mounted () {
-
   }
 })
 </script>
@@ -77,8 +76,7 @@ ul {
     }
   }
   .router-link-active {
-    background: @bg-color-red1;
-    color: #fff;
+    color: @bg-color-red1;
   }
 }
 </style>

@@ -97,7 +97,7 @@ export default {
         myLocalStorage.remove('userToken')
         myLocalStorage.remove('userInfo')
         this.$router.push('/home')
-
+				this.$store.commit("changeShowFooter",true)
       }).catch((data) => {
       })
     },

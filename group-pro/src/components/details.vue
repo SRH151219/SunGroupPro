@@ -13,15 +13,15 @@
       </div>
       <div class="food-card">
         <h3>{{data.title}}</h3>
-        <p>{{data.content}}</p>
+        <p>下面是{{data.title}}的商品详细介绍</p>
        <div><span>￥<span class="food-price">{{data.price}}</span></span></div> 
       </div>
       <div class="food-intruction">
-        <p v-for="i in 100" :key="i">{{data.title}}的商品详细介绍</p>
+        <p>{{data.content}}</p>
       </div>
       </div>
     </main>
-    <footer>
+    <!-- <footer>
       <div class="btn">
         <input @click="del(data.id)" class="Btn min" type="button" value="-">
         <input ref="inputText" class="Btn" :value="num">
@@ -30,7 +30,7 @@
       <div class="toCar">
           <button @click="toCar">去购物车</button>
       </div>
-    </footer>
+    </footer> -->
   </div>
 </template>
 
@@ -75,7 +75,6 @@ export default {
     }
   },
   mounted(){
-    console.log(123124124)
     this.data=this.$route.params.Info
     this.getNum()
     let detailsBS=new BScroll('.detailsScroll')
@@ -130,13 +129,18 @@ export default {
     }
       }
       .food-intruction{
-        .margin(10,0,0,0);
+        .margin(30,40,80,40);
     border: 1px solid #eee;
-    .padding(10,10,10,10);
+    .padding(20,10,50,10);
     .l_h(20);
+    p{
+      .f_s(16);
+      .l_h(32)
+    }
+
       }
     }
-    footer{
+    /* footer{
     .w(375);
     height: 50px;
     border-top: 1px solid #eee;
@@ -166,6 +170,6 @@ padding-top:10px;
     height: 50px;
       }
     }
-    }
+    } */
 }
 </style>

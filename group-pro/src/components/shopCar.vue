@@ -21,9 +21,10 @@
 							</div>
 							<div class="right">
 								<p class="title">{{item.title}}</p>
-								<p>{{item.content}}</p>
-								<p>
-									<i>￥</i>{{item.price}}</p>
+								<p class="desc">{{item.content}}</p>
+								<p>￥
+									<i class="price">{{item.price}}</i>
+								</p>
 								<div class="btn">
 									<i class="del"
 									   @click="del(item.id,index)">-</i>
@@ -41,7 +42,7 @@
 								<i>￥</i>{{sum}}</span>
 						</div>
 						<div>
-							<span>红包:{{redBag}}</span>
+							<span class="redMoney">红包:{{redBag}}</span>
 							<span>
 								<i>-￥</i>{{redBagPrice}}</span>
 						</div>
@@ -116,7 +117,7 @@ export default ({
 		},
 		sumPrice () {
 			if (this.reslSum == 0) {
-				console.log(111)
+				// console.log(111)
 				this.postage = '+￥0'
 				return this.realSum
 			} else if (this.realSum >= 49) {
@@ -203,6 +204,22 @@ export default ({
     border-bottom: 1px solid #ccc;
     text-align: center;
     .l_h(40);
+    background: -webkit-linear-gradient(
+      left,
+      orange,
+      #f14e16
+    ); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(
+      right,
+      orange,
+      #f14e16
+    ); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(
+      right,
+      orange,
+      #f14e16
+    ); /* Firefox 3.6 - 15 */
+    background: linear-gradient(to right, orange, #f14e16); /* 标准的语法 */
   }
   .content,
   .content-empty {
@@ -251,6 +268,18 @@ export default ({
               .margin(20,0,0,0);
               .h(30);
               .l_h(30);
+              font-style: italic;
+              color: red;
+            }
+            .desc {
+              .w(200);
+              white-space: nowrap;
+              text-overflow: ellipsis;
+              overflow: hidden;
+            }
+            .price {
+              color: #ff65af;
+              font-weight: 900;
             }
             p {
               .h(30);
@@ -268,8 +297,9 @@ export default ({
                 .h(20);
                 text-align: center;
                 .l_h(20);
-                background: #ff65af;
+                background: #2be2e8;
                 border-radius: 50%;
+                color: #fff;
               }
               span {
                 .w(30);
@@ -293,8 +323,11 @@ export default ({
         justify-content: space-between;
         width: 100%;
         .h(40);
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid rgb(236, 230, 230);
         .l_h(40);
+      }
+      .redMoney {
+        color: red;
       }
     }
     .pay-box {
@@ -305,9 +338,8 @@ export default ({
       left: 0;
       .btn-box {
         .w(375);
-        .h(40);
-        border-top: 1px solid #ccc;
-        border-bottom: 1px solid #ccc;
+        .h(40); // border-top: 1px solid #ccc;
+        // border-bottom: 1px solid #ccc;
         .btn {
           .w(100);
           height: 100%;

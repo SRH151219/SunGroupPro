@@ -127,6 +127,7 @@ export default {
         this.show = true
       } else {
         this.show = false
+        return
       }
     },
     handleGoSet () {
@@ -145,7 +146,12 @@ export default {
       }
     },
     obligation () {
-      this.$router.push("/pay")
+      if (this.goodsNum == 0) {
+        alert("您还没有订单")
+      } else {
+        this.$router.push("/pay")
+      }
+
     }
   }
 }
