@@ -18,7 +18,7 @@
         <ul class="foods">
           <li v-for="(item,index) in mainInfo" :key="index">
             <div @click="toDetails(item)"  class="left">
-              <img :src="item.img" alt>
+              <img v-lazy="item.img" alt>
             </div>
             <div class="right">
               <div @click="toDetails(item)" class="text">
@@ -134,6 +134,7 @@ export default {
     }
   },
   mounted(){
+		console.log("home挂载")
 	this.getInfo();
    let navBS= new BScroll(".top-nav", {click: true, scrollX: true });
     let homeBS= new BScroll(".homeScroll", {click: true});

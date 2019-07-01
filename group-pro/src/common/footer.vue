@@ -44,7 +44,6 @@
 			}
 		},
 		mounted(){
-			this.goMy()
 		}
 	})
 </script>

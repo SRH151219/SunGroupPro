@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from "components/home"
-import Details from "components/details"
-import ShopCar from "components/shopCar"
-import My from "components/my"
+const Home = () => import('components/home')
+const Details = () => import('components/details')
+const ShopCar = () => import('components/shopCar')
+const My = () => import('components/my')
+const Pay = () => import('components/pay')
 const Login = () => import('components/login')
 const Register = () => import('components/register')
 const userSet = () => import('components/set')
@@ -11,17 +12,25 @@ const Address = () => import('components/address')
 const editAddress = () => import('components/editAddress')
 const addAddress = () => import('components/addAddress')
 const ModifyInfo = () => import('components/modifyInfo')
-import Pay from "components/pay"
 import myLocalStorage from 'utils/myStorage'
 Vue.use(Router)
 
 let router = new Router({
-	// mode: 'history',
+	 /* mode: 'history', */
 	base: process.env.BASE_URL,
 	routes: [{
 			path: "/",
 			redirect: "/home",
 			component: Home
+		},
+		{
+			path: '/home',
+			component: Home,
+			children: [{
+				path: 'details',
+				name: 'details',
+				component: Details
+			}]
 		},
 		{
 			path: "/my",
@@ -57,15 +66,6 @@ let router = new Router({
 				path: 'add',
 				name: 'add',
 				component: addAddress
-			}]
-		},
-		{
-			path: '/home',
-			component: Home,
-			children: [{
-				path: 'details',
-				name: 'details',
-				component: Details
 			}]
 		},
 		{
