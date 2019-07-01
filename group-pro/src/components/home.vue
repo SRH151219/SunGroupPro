@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div ref="home"
+    <div ref="homebg"
          class="bg"></div>
     <header>
       <div class="top-text">一小时达</div>
@@ -105,14 +105,14 @@ export default {
       this.mainInfo = [];
       if (!k) {
         this.mainInfo = this.$store.state.foodInfo;
-        this.$refs.home.style.backgroundImage = `url('/static/imgs/bg/${0}.jpg')`
+        this.$refs.homebg.style.backgroundImage = `url('/static/imgs/bg/${0}.jpg')`
       } else {
         this.$store.state.foodInfo.filter((item, index, array) => {
           if (item.kind == k) {
             this.mainInfo.push(item);
           }
         });
-        this.$refs.home.style.backgroundImage = `url('/static/imgs/bg/${k}.jpg')`
+        this.$refs.homebg.style.backgroundImage = `url('/static/imgs/bg/${k}.jpg')`
       }
     },
     getNum () {

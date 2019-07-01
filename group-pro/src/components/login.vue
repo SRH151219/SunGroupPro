@@ -124,7 +124,12 @@ export default {
   },
   mounted () {
     this.$store.commit("changeShowFooter", false)
-  }
+  },
+	beforeRouteLeave(to,from,next){
+		this.$router.back()
+		this.handleBack()
+		next()
+	}
 }
 </script>
 
