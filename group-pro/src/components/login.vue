@@ -109,6 +109,7 @@ export default {
     },
     handleRegister () {
       this.$router.push('/register')
+			this.$store.commit("changeShowFooter", false)
     },
     getAddress () {
       this.$axios({
@@ -126,8 +127,7 @@ export default {
     this.$store.commit("changeShowFooter", false)
   },
 	beforeRouteLeave(to,from,next){
-		this.$router.back()
-		this.handleBack()
+		this.$store.commit("changeShowFooter", true)
 		next()
 	}
 }

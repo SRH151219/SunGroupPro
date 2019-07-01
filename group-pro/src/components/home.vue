@@ -85,8 +85,8 @@ export default {
       swiperImg: [
         '/static/imgs/nav/1.jpg',
         '/static/imgs/nav/2.jpg',
-        '/static/imgs/nav/3.jpg',
-        '/static/imgs/nav/4.jpg'
+        '/static/imgs/nav/3.png',
+        '/static/imgs/nav/4.png'
       ]
     };
   },
